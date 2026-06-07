@@ -1,0 +1,125 @@
+/* =====================================================================
+   Footer.css — always-dark block. Uses footer-local variables so the
+   text stays light in BOTH light and dark themes (no hardcoded colors).
+   ===================================================================== */
+
+.site-footer {
+  /* light theme: dark surface needs light text -> use the inverse token */
+  --footer-fg: var(--color-text-inverse);
+  --footer-muted: color-mix(in srgb, var(--color-text-inverse) 60%, transparent);
+  --footer-link: color-mix(in srgb, var(--color-text-inverse) 82%, transparent);
+  --footer-line: color-mix(in srgb, var(--color-text-inverse) 16%, transparent);
+
+  background: var(--color-ink-surface);
+  color: var(--footer-fg);
+  padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
+}
+
+/* dark theme: the page is already dark, so the normal text tokens are light */
+[data-theme="dark"] .site-footer {
+  --footer-fg: var(--color-text);
+  --footer-muted: var(--color-text-muted);
+  --footer-link: color-mix(in srgb, var(--color-text) 82%, transparent);
+  --footer-line: color-mix(in srgb, var(--color-text) 14%, transparent);
+}
+
+/* ---- Brand ---- */
+.footer__name {
+  margin: 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--footer-fg);
+}
+.footer__tagline {
+  margin: 0.6rem 0 1.3rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--footer-muted);
+}
+.footer__icons {
+  display: flex;
+  gap: 0.9rem;
+}
+.footer__icon {
+  color: var(--footer-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.footer__icon:hover {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* ---- Link columns ---- */
+.footer__col-label {
+  margin: 0 0 1rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--footer-muted);
+}
+.footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer__link {
+  display: inline-block;
+  padding: 0.32rem 0;
+  font-size: 0.95rem;
+  color: var(--footer-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer__link:hover {
+  color: var(--color-accent);
+}
+
+/* ---- Divider + bottom row ---- */
+.footer__divider {
+  height: 1px;
+  margin: clamp(2rem, 5vw, 3rem) 0 1.5rem;
+  border: 0;
+  background: var(--footer-line);
+  opacity: 1;
+}
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.footer__copy,
+.footer__built {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--footer-muted);
+}
+
+/* ---- Scroll reveal (self-contained) ---- */
+.site-footer .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.site-footer.is-visible .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .footer__icon,
+  .footer__link {
+    transition: none;
+  }
+}

@@ -1,0 +1,140 @@
+/* =====================================================================
+   Skills.css — Skills & Education. Token-driven (light/dark ready).
+   Reuses the global .section-label defined in About.css.
+   ===================================================================== */
+
+.skills {
+  padding: clamp(3.5rem, 8vw, 7rem) 0;
+  background: var(--color-bg);
+}
+
+.skills__heading {
+  margin: 0 0 1.8rem;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  color: var(--color-text);
+}
+
+/* ---- Education timeline ---- */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.timeline__item {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  padding-bottom: 1.9rem;
+}
+.timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline__marker {
+  position: relative;
+}
+/* the dot */
+.timeline__marker::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  z-index: 1;
+}
+.timeline__item--current .timeline__marker::before {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+/* the connecting line (not on the last item) */
+.timeline__item:not(:last-child) .timeline__marker::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 16px;
+  bottom: -1.9rem;
+  width: 1.5px;
+  background: var(--color-border);
+  transform: translateX(-50%);
+}
+
+.timeline__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+.timeline__place {
+  margin: 0.15rem 0 0;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+.timeline__meta {
+  margin: 0.45rem 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+/* ---- Skill groups ---- */
+.skill-group {
+  margin-bottom: 1.4rem;
+}
+.skill-group:last-child {
+  margin-bottom: 0;
+}
+.skill-group__label {
+  margin: 0 0 0.6rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.skill-group__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.skill-chip {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+  padding: 0.35rem 0.7rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.skill-chip:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ---- Scroll reveal (self-contained) ---- */
+.skills .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.skills.is-visible .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .skill-chip {
+    transition: none;
+  }
+}

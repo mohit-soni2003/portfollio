@@ -1,0 +1,188 @@
+/* =====================================================================
+   Hero.css — first section. All colors come from theme.css tokens,
+   so it adapts to light/dark with no changes here.
+   ===================================================================== */
+
+.hero {
+  padding: clamp(3rem, 8vw, 7rem) 0;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+/* ---- Status line ---- */
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.hero__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: heroPulse 2.4s ease-out infinite;
+}
+@keyframes heroPulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent); }
+  70%  { box-shadow: 0 0 0 9px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* ---- Name ---- */
+.hero__name {
+  margin: 0.7rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(3.2rem, 9vw, 6.4rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+.hero__name-accent {
+  display: block;
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+/* ---- Tagline ---- */
+.hero__tagline {
+  margin: 1.4rem 0 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+/* ---- Blurb ---- */
+.hero__blurb {
+  margin: 1rem 0 0;
+  max-width: 46ch;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* ---- Tech chips ---- */
+.hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.6rem 0 0;
+}
+.hero__tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+  padding: 0.35rem 0.7rem;
+}
+
+/* ---- Buttons ---- */
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 2rem 0 0;
+}
+.hero__btn-primary {
+  --bs-btn-color: var(--color-accent-contrast);
+  --bs-btn-bg: var(--color-accent);
+  --bs-btn-border-color: var(--color-accent);
+  --bs-btn-hover-color: var(--color-accent-contrast);
+  --bs-btn-hover-bg: var(--color-accent-hover);
+  --bs-btn-hover-border-color: var(--color-accent-hover);
+  --bs-btn-active-bg: var(--color-accent-hover);
+  --bs-btn-active-border-color: var(--color-accent-hover);
+  --bs-btn-border-radius: 9px;
+  font-weight: 600;
+  padding: 0.6rem 1.45rem;
+}
+.hero__btn-outline {
+  --bs-btn-color: var(--color-text);
+  --bs-btn-border-color: var(--color-text);
+  --bs-btn-bg: transparent;
+  --bs-btn-hover-color: var(--color-accent-contrast);
+  --bs-btn-hover-bg: var(--color-text);
+  --bs-btn-hover-border-color: var(--color-text);
+  --bs-btn-active-color: var(--color-accent-contrast);
+  --bs-btn-active-bg: var(--color-text);
+  --bs-btn-active-border-color: var(--color-text);
+  --bs-btn-border-radius: 9px;
+  font-weight: 600;
+  padding: 0.6rem 1.45rem;
+}
+
+/* ---- Photo ---- */
+.hero__media {
+  display: flex;
+  justify-content: flex-end;
+}
+.hero__photo-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1 / 1.08;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+}
+.hero__photo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* shown only if the image is missing */
+.hero__photo-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 4rem;
+  color: var(--color-border);
+}
+
+/* ---- Entrance animation ---- */
+.hero__reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+@keyframes heroIn {
+  to { opacity: 1; transform: none; }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 991.98px) {
+  .hero__media {
+    justify-content: center;
+  }
+  .hero__photo-wrap {
+    max-width: 320px;
+  }
+}
+@media (max-width: 575.98px) {
+  .hero__actions .btn {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__reveal { opacity: 1; transform: none; animation: none; }
+  .hero__dot { animation: none; }
+}

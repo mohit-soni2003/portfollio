@@ -1,0 +1,107 @@
+/* =====================================================================
+   Experience.css — sits on the alternate background. Token-driven.
+   Reuses the global .section-label from About.css.
+   ===================================================================== */
+
+.experience {
+  padding: clamp(3.5rem, 8vw, 7rem) 0;
+  background: var(--color-bg-alt);
+}
+
+.exp__list {
+  margin-top: 1.5rem;
+}
+
+/* each role; divider + spacing between entries */
+.exp__item {
+  padding-top: 2.5rem;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--color-border);
+}
+.exp__item:first-child {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: none;
+}
+
+/* ---- Left column ---- */
+.exp__company {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+.exp__role {
+  margin: 0.25rem 0 0;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-accent);
+}
+.exp__meta {
+  margin: 0.55rem 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+.exp__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.85rem 0 0;
+}
+.exp__tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+}
+
+/* ---- Right column ---- */
+.exp__desc {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+.exp__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 1rem 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.exp__link:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+/* ---- Scroll reveal (self-contained) ---- */
+.experience .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.experience.is-visible .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .exp__link {
+    transition: none;
+  }
+}

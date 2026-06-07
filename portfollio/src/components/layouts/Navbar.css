@@ -1,0 +1,191 @@
+/* =====================================================================
+   Navbar.css — styles the React-Bootstrap navbar using your theme tokens.
+   No hex codes here: every color reads from var(--color-*) in theme.css,
+   so light/dark mode works automatically. We override Bootstrap's own
+   navbar/button CSS variables (--bs-*) so the framework stays on-brand.
+   ===================================================================== */
+
+.site-nav {
+  /* Map Bootstrap's navbar variables to your tokens */
+  --bs-navbar-color: var(--color-text-muted);
+  --bs-navbar-hover-color: var(--color-text);
+  --bs-navbar-active-color: var(--color-text);
+  --bs-navbar-brand-color: var(--color-text);
+  --bs-navbar-brand-hover-color: var(--color-text);
+  --bs-navbar-padding-y: 0;
+
+  padding-block: 0.85rem;
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.site-nav--scrolled {
+  border-bottom-color: var(--color-border);
+  background: color-mix(in srgb, var(--color-bg) 93%, transparent);
+}
+
+/* ---- Brand / logo ---- */
+.site-nav__brand {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Links ---- */
+.site-nav__links {
+  gap: 0.15rem;
+}
+
+.site-nav__link {
+  position: relative;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.9rem !important;
+  transition: color 0.2s ease;
+}
+
+/* animated underline grows from the left on hover / active */
+.site-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.15rem;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.site-nav__link:hover::after,
+.site-nav__link.active::after {
+  transform: scaleX(1);
+}
+
+/* ---- Right-side actions ---- */
+.site-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Theme toggle button */
+.site-nav__theme {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.site-nav__theme:hover {
+  color: var(--color-accent);
+  border-color: var(--color-text-muted);
+}
+
+/* Résumé button — outlined accent (matches the design) */
+.site-nav__resume {
+  --bs-btn-color: var(--color-accent);
+  --bs-btn-border-color: var(--color-accent);
+  --bs-btn-bg: transparent;
+  --bs-btn-hover-color: var(--color-accent-contrast);
+  --bs-btn-hover-bg: var(--color-accent);
+  --bs-btn-hover-border-color: var(--color-accent);
+  --bs-btn-active-color: var(--color-accent-contrast);
+  --bs-btn-active-bg: var(--color-accent-hover);
+  --bs-btn-active-border-color: var(--color-accent-hover);
+  --bs-btn-border-radius: 9px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.45rem 1.15rem;
+}
+
+/* ---- Animated hamburger (replaces Bootstrap's default icon) ---- */
+.site-nav__toggle {
+  border: none;
+  padding: 0.4rem;
+}
+.site-nav__toggle:focus {
+  box-shadow: none;
+}
+.site-nav__burger,
+.site-nav__burger::before,
+.site-nav__burger::after {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.2s ease, top 0.3s ease;
+}
+.site-nav__burger {
+  position: relative;
+}
+.site-nav__burger::before,
+.site-nav__burger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.site-nav__burger::before {
+  top: -7px;
+}
+.site-nav__burger::after {
+  top: 7px;
+}
+/* turn into an X when the menu is open */
+.site-nav__toggle[aria-expanded="true"] .site-nav__burger {
+  background: transparent;
+}
+.site-nav__toggle[aria-expanded="true"] .site-nav__burger::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+.site-nav__toggle[aria-expanded="true"] .site-nav__burger::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* ---- Mobile layout (below Bootstrap's lg breakpoint, < 992px) ---- */
+@media (max-width: 991.98px) {
+  .site-nav__inner .navbar-collapse {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .site-nav__link {
+    padding: 0.7rem 0.25rem !important;
+  }
+  .site-nav__link::after {
+    display: none; /* underline looks odd stacked; use color instead */
+  }
+  .site-nav__link.active {
+    color: var(--color-accent);
+  }
+  .site-nav__actions {
+    margin-top: 0.85rem;
+  }
+  .site-nav__resume {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav,
+  .site-nav__link::after,
+  .site-nav__burger,
+  .site-nav__burger::before,
+  .site-nav__burger::after {
+    transition: none;
+  }
+}

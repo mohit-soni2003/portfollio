@@ -1,0 +1,59 @@
+/* =====================================================================
+   theme.css — single source of truth for ALL colors on the site.
+   Change a value here and it updates everywhere. Nothing else hardcodes
+   a hex code; every component reads these variables instead.
+ 
+   Usage:  background: var(--color-bg);  color: var(--color-text);
+   ===================================================================== */
+ 
+:root {
+  /* ---- Surfaces / backgrounds ---- */
+  --color-bg:            #F4F0E8;  /* page background — warm paper          */
+  --color-bg-alt:        #ECE7DB;  /* alternating section background        */
+  --color-surface:       #FCFAF5;  /* cards, inputs, raised blocks          */
+  --color-ink-surface:   #14130E;  /* dark blocks (e.g. footer)             */
+ 
+  /* ---- Text ---- */
+  --color-text:          #18160F;  /* primary text — near-black             */
+  --color-text-muted:    #6B6657;  /* secondary / supporting text           */
+  --color-text-inverse:  #EDE9DF;  /* text on dark surfaces                 */
+ 
+  /* ---- Lines / borders ---- */
+  --color-border:        #DDD6C7;  /* hairline dividers + card borders      */
+ 
+  /* ---- Accent (use sparingly: links, buttons, key numbers) ---- */
+  --color-accent:          #D6401E;  /* vermilion                           */
+  --color-accent-hover:    #B5310F;  /* darker — hover / active             */
+  --color-accent-contrast: #FCFAF5;  /* text/icon sitting ON the accent     */
+  --color-accent-soft:     #F6E0D8;  /* faint tint — chip / highlight bg    */
+ 
+  /* ---- Feedback (form states) ---- */
+  --color-success:       #2E7D5B;
+  --color-error:         #C0392B;
+}
+ 
+/* =====================================================================
+   Dark theme — add  data-theme="dark"  to the <html> tag to activate.
+   Same variable names, different values, so every component just works.
+   ===================================================================== */
+ 
+[data-theme="dark"] {
+  --color-bg:            #14130E;
+  --color-bg-alt:        #1C1A13;
+  --color-surface:       #211F17;
+  --color-ink-surface:   #0E0D09;
+ 
+  --color-text:          #EDE9DF;
+  --color-text-muted:    #A8A294;
+  --color-text-inverse:  #18160F;
+ 
+  --color-border:        #34312A;
+ 
+  --color-accent:          #E85A37;
+  --color-accent-hover:    #F0744F;
+  --color-accent-contrast: #14130E;
+  --color-accent-soft:     #2E211B;
+ 
+  --color-success:       #5BBF90;
+  --color-error:         #E5736A;
+}

@@ -1,0 +1,150 @@
+/* =====================================================================
+   Contact.css — "Let's talk". Token-driven (light/dark ready).
+   Reuses the global .section-label from About.css.
+   Themes React-Bootstrap form controls via their own --bs-* variables.
+   ===================================================================== */
+
+.contact {
+  padding: clamp(3.5rem, 8vw, 7rem) 0;
+  background: var(--color-bg-alt);
+}
+
+.contact__title {
+  margin: 0 0 2.4rem;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 4.2vw, 2.9rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+/* ---- Left: details ---- */
+.contact__group {
+  margin-bottom: 1.6rem;
+}
+.contact__label {
+  margin: 0 0 0.35rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.contact__link {
+  color: var(--color-accent);
+  text-decoration: none;
+  word-break: break-word;
+  transition: color 0.2s ease;
+}
+.contact__link:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+.contact__plain {
+  margin: 0;
+  color: var(--color-text);
+}
+
+/* social row sits under a divider */
+.contact__group--social {
+  margin-top: 2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--color-border);
+}
+.contact__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.contact__social {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+  padding: 0.35rem 0.7rem;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.contact__social:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ---- Right: form ---- */
+.contact__flabel {
+  margin-bottom: 0.4rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* theme the Bootstrap inputs through their own variables */
+.contact__form .form-control {
+  --bs-body-bg: var(--color-surface);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.contact__form .form-control::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+.contact__form .form-control:focus {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
+.contact__submit {
+  margin-top: 1.5rem;
+  --bs-btn-color: var(--color-accent-contrast);
+  --bs-btn-bg: var(--color-accent);
+  --bs-btn-border-color: var(--color-accent);
+  --bs-btn-hover-color: var(--color-accent-contrast);
+  --bs-btn-hover-bg: var(--color-accent-hover);
+  --bs-btn-hover-border-color: var(--color-accent-hover);
+  --bs-btn-active-bg: var(--color-accent-hover);
+  --bs-btn-active-border-color: var(--color-accent-hover);
+  --bs-btn-border-radius: 9px;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+}
+
+.contact__note {
+  margin: 1rem 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+/* ---- Scroll reveal (self-contained) ---- */
+.contact .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.contact.is-visible .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .contact__form .form-control,
+  .contact__social {
+    transition: none;
+  }
+}
